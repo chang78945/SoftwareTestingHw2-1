@@ -1,0 +1,118 @@
+        -:    0:Source:nextDate.cc
+        -:    0:Graph:nextDate.gcno
+        -:    0:Data:nextDate.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "nextDate.h"
+        -:    2:#include <sstream>
+        -:    3:
+        -:    4:using namespace std;
+        -:    5:
+      420:    6:string int2str(int &i) {
+      420:    7:  string s;
+      840:    8:  stringstream ss(s);
+      420:    9:  ss << i;
+        -:   10:
+      840:   11:  return ss.str();
+        -:   12:}
+        -:   13:
+      386:   14:string nextDate(int month, int day, int year){
+      386:   15:	string output = "";
+      386:   16:	int tomorrowMonth = month;
+      386:   17:	int tomorrowDay = day;
+      386:   18:	int tomorrowYear = year;
+      386:   19:    bool flag = false;
+      386:   20:    bool flagA = false;
+      386:   21:    bool flagB = false;
+      386:   22:    bool flagC = false;
+        -:   23:    
+      386:   24:	if((month < 1) || (month > 12))
+      111:   25:        flagA = true;
+      386:   26:	if(( day< 1) || (day > 31))
+       97:   27:        flagB = true;
+      386:   28:	if((year < 1812) || (year > 2012))
+      111:   29:        flagC = true;
+        -:   30:		
+      386:   31:    if(flagA&&flagB&&flagC)
+       11:   32:        output = "month not in 1 ... 12, day not in 1 ... 31, year not in 1812 ... 2012";
+      375:   33:    else if(flagA&&flagB)
+       23:   34:        output = "month not in 1 ... 12, day not in 1 ... 31";
+      352:   35:    else if(flagA&&flagC)
+       23:   36:        output = "month not in 1 ... 12, year not in 1812 ... 2012";
+      329:   37:    else if(flagB&&flagC)
+       19:   38:        output = "day not in 1 ... 31, year not in 1812 ... 2012";
+      310:   39:    else if(flagA)
+       54:   40:        output = "month not in 1 ... 12";
+      256:   41:    else if(flagB)
+       44:   42:        output = "day not in 1 ... 31";
+      212:   43:    else if(flagC)
+       58:   44:        output = "year not in 1812 ... 2012";
+        -:   45:	else
+        -:   46:	{
+      154:   47:		if(month==4||month==6||month==9||month==11){
+       72:   48:			if(day==31)
+        6:   49:				flag = true;
+        -:   50:		}
+      118:   51:		else if(month==2){
+       37:   52:			if(year%4==0&&day>29)
+        3:   53:				flag = true;
+       34:   54:			else if(year%4!=0&&day>28)
+        4:   55:				flag = true;
+        -:   56:		}
+       81:   57:		else if(month==12){
+       28:   58:			if(day==31&&year==2012)
+        1:   59:				flag = true;
+        -:   60:		}
+      154:   61:		if(flag)
+       14:   62:			output = "Invalid input date";
+        -:   63:		else
+        -:   64:		{
+      140:   65:			if(month==1||month==3||month==5||month==7||month==8||month==10){
+      106:   66:				if(day<31)	
+       42:   67:					tomorrowDay = tomorrowDay + 1;
+        -:   68:				else{
+       11:   69:					tomorrowDay = 1;
+       11:   70:					tomorrowMonth = tomorrowMonth + 1; 
+        -:   71:				}
+        -:   72:			}
+       87:   73:			else if(month==4||month==6||month==9||month==11){
+       60:   74:				if(day<30)	
+       23:   75:					tomorrowDay = tomorrowDay + 1;
+        -:   76:				else{
+        7:   77:					tomorrowDay = 1;
+        7:   78:					tomorrowMonth = tomorrowMonth + 1; 
+        -:   79:				}
+        -:   80:			}
+       57:   81:			else if(month==12){
+       27:   82:				if(day<31)	
+       22:   83:					tomorrowDay = tomorrowDay + 1;
+        -:   84:				else{
+        5:   85:					tomorrowDay = 1;
+        5:   86:					tomorrowMonth = 1;
+        5:   87:					tomorrowYear = tomorrowYear + 1; 
+        -:   88:				}
+        -:   89:			}
+       30:   90:			else if(month==2){
+       30:   91:				if(day<28)
+       19:   92:					tomorrowDay = tomorrowDay + 1;
+        -:   93:				else{
+       11:   94:					if(year%4!=0){
+        3:   95:						tomorrowDay = 1;
+        3:   96:						tomorrowMonth = 3;
+        -:   97:					}
+        -:   98:					else{
+        8:   99:						if(day==29){
+        4:  100:							tomorrowDay = 1;
+        4:  101:							tomorrowMonth = 3;
+        -:  102:						}
+        -:  103:						else
+        4:  104:							tomorrowDay = tomorrowDay + 1;
+        -:  105:					}				
+        -:  106:				}
+        -:  107:			}
+      140:  108:			output = int2str(tomorrowMonth) + "," + int2str(tomorrowDay) + "," + int2str(tomorrowYear);
+        -:  109:		}
+        -:  110:	}
+      386:  111:	return output;
+        -:  112:}
+        -:  113:

@@ -1,0 +1,104 @@
+        -:    0:Source:commission.cc
+        -:    0:Graph:commission.gcno
+        -:    0:Data:commission.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "commission.h"
+        -:    2:#include <string>
+        -:    3:#include <sstream>
+        -:    4:
+        -:    5:using namespace std;
+        -:    6:
+       15:    7:string double2str(double &dbl) {
+       15:    8:	ostringstream strs;
+       15:    9:	strs << dbl;
+       15:   10:	string str = strs.str();
+       15:   11:	return str;
+        -:   12:}
+        -:   13:
+      171:   14:int str2int(string str) {
+        -:   15:	int val;
+      171:   16:	istringstream is(str);
+      171:   17:	is>>val;
+      171:   18:	return val;
+        -:   19:}
+        -:   20:
+       42:   21:string commission(string str){
+       42:   22:	int num = 0;
+       42:   23:	int totalLocks = 0;
+       42:   24:	int totalStocks = 0;
+       42:   25:	int totalBarrels = 0;
+       42:   26:	double lockprice = 45;
+       42:   27:	double stockprice = 30;
+       42:   28:	double barrelprice = 25;
+        -:   29:	double lockSales, stockSales, barrelSales, sales, commission;
+       42:   30:	bool flag = false;
+       42:   31:	bool flagA = false;
+       42:   32:	bool flagB = false;
+       42:   33:	bool flagC = false;
+       42:   34:	string sub_str, output;
+        -:   35:	
+       84:   36:	stringstream ss(str);
+      255:   37:	while(getline(ss,sub_str,',')&&!flag){
+      171:   38:		int val = str2int(sub_str);
+      171:   39:		if(num == 0){
+       85:   40:			if(val == -1)
+       42:   41:				flag = true;
+       43:   42:			else if(( val< 1) || (val > 70))
+       14:   43:				flagA = true;
+        -:   44:			else
+       29:   45:				totalLocks = totalLocks + val;
+        -:   46:		}
+       86:   47:		else if(num == 1){
+       43:   48:			if(( val< 1) || (val > 80))
+       14:   49:				flagB = true;
+        -:   50:			else
+       29:   51:				totalStocks = totalStocks + val;
+        -:   52:		}
+        -:   53:		else{
+       43:   54:			if((val < 1) || (val > 90))
+       14:   55:				flagC = true;
+        -:   56:			else
+       29:   57:				totalBarrels = totalBarrels + val;
+        -:   58:		}
+      171:   59:		num++;
+      171:   60:		if(num==3)
+       43:   61:			num = 0;
+        -:   62:	}
+        -:   63:	
+       42:   64:	if(flagA&&flagB&&flagC)
+        3:   65:		output = "locks not in 1...70, stocks not in 1...80, barrels not in 1...90";
+       39:   66:	else if(flagA&&flagB)
+        3:   67:		output = "locks not in 1...70, stocks not in 1...80";
+       36:   68:	else if(flagA&&flagC)
+        3:   69:		output = "locks not in 1...70, barrels not in 1...90";
+       33:   70:	else if(flagB&&flagC)
+        3:   71:		output = "stocks not in 1...80, barrels not in 1...90";
+       30:   72:	else if(flagA)
+        5:   73:		output = "locks not in 1...70";
+       25:   74:	else if(flagB)
+        5:   75:		output = "stocks not in 1...80";
+       20:   76:	else if(flagC)
+        5:   77:		output = "barrels not in 1...90";
+        -:   78:	else{
+       15:   79:		lockSales = totalLocks * lockprice;
+       15:   80:		stockSales = totalStocks * stockprice;
+       15:   81:		barrelSales = totalBarrels * barrelprice;
+       15:   82:		sales = lockSales + stockSales + barrelSales;
+        -:   83:		
+       15:   84:		if(sales > 1800){
+       11:   85:			commission = 0.1 * 1000;           
+       11:   86:			commission = commission + 0.15 * 800;
+       11:   87:			commission = commission + 0.2 * (sales - 1800);
+        -:   88:		}
+        4:   89:		else if(sales > 1000){
+        1:   90:			commission = 0.1 * 1000;             
+        1:   91:			commission = commission + 0.15 * (sales - 1000);
+        -:   92:		}
+        -:   93:		else
+        3:   94:			commission = 0.1 * sales;
+       15:   95:		output = "$" + double2str(commission);
+        -:   96:	}
+       84:   97:	return output;
+        -:   98:}
+        -:   99:

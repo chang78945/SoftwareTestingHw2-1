@@ -1,0 +1,58 @@
+        -:    0:Source:Istriangle.cc
+        -:    0:Graph:Istriangle.gcno
+        -:    0:Data:Istriangle.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "Istriangle.h"
+        -:    2:#include <string>
+        -:    3:
+        -:    4:using namespace std;
+        -:    5:
+      429:    6:string determineTriangleType(int a, int b, int c){
+      429:    7:    bool flagA = false;
+      429:    8:    bool flagB = false;
+      429:    9:    bool flagC = false;
+      429:   10:    string output;
+        -:   11:    
+      429:   12:    if((a < 1) || (a > 200))
+      111:   13:        flagA = true;
+      429:   14:    if((b < 1) || (b > 200))
+      111:   15:        flagB = true;
+      429:   16:    if((c < 1) || (c > 200))
+      111:   17:        flagC = true;
+        -:   18:    
+      429:   19:    if(flagA&&flagB&&flagC)
+       11:   20:        output = "Value of a,b,c is not in the range of permitted values";
+      418:   21:    else if(flagA&&flagB)
+       23:   22:        output = "Value of a,b is not in the range of permitted values";
+      395:   23:    else if(flagA&&flagC)
+       23:   24:        output = "Value of a,c is not in the range of permitted values";
+      372:   25:    else if(flagB&&flagC)
+       23:   26:        output = "Value of b,c is not in the range of permitted values";
+      349:   27:    else if(flagA)
+       54:   28:        output = "Value of a is not in the range of permitted values";
+      295:   29:    else if(flagB)
+       54:   30:        output = "Value of b is not in the range of permitted values";
+      241:   31:    else if(flagC)
+       54:   32:        output = "Value of c is not in the range of permitted values";
+        -:   33:    else
+        -:   34:	{
+      187:   35:		if((a >= b + c)||(b >= a + c)||(c >= a + b))
+       91:   36:			output = "Not a triangle";			
+        -:   37:		else
+        -:   38:		{
+       96:   39:			if((a == b)&&(b == c))
+       12:   40:				output = "Equilateral";
+       84:   41:			else if((a == b)&&(a != c))
+       19:   42:				output = "Isosceles";
+       65:   43:			else if((a == c)&&(a != b))
+       18:   44:				output = "Isosceles";
+       47:   45:			else if((b == c)&&(b != a))
+       18:   46:				output = "Isosceles";
+        -:   47:			else
+       29:   48:				output = "Scalence";	
+        -:   49:		}
+        -:   50:	}
+      429:   51:	return output;
+        -:   52:}
+        -:   53:

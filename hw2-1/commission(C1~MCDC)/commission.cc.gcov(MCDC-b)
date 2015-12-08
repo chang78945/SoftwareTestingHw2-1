@@ -1,0 +1,257 @@
+        -:    0:Source:commission.cc
+        -:    0:Graph:commission.gcno
+        -:    0:Data:commission.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "commission.h"
+        -:    2:#include <string>
+        -:    3:#include <sstream>
+        -:    4:
+        -:    5:using namespace std;
+        -:    6:
+function _Z10double2strRd called 15 returned 100% blocks executed 80%
+       15:    7:string double2str(double &dbl) {
+       15:    8:	ostringstream strs;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       15:    9:	strs << dbl;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       15:   10:	string str = strs.str();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       15:   11:	return str;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 never executed
+        -:   12:}
+        -:   13:
+function _Z7str2intSs called 171 returned 100% blocks executed 75%
+      171:   14:int str2int(string str) {
+        -:   15:	int val;
+      171:   16:	istringstream is(str);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+      171:   17:	is>>val;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+      171:   18:	return val;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 never executed
+        -:   19:}
+        -:   20:
+function _Z10commissionSs called 42 returned 100% blocks executed 87%
+       42:   21:string commission(string str){
+       42:   22:	int num = 0;
+       42:   23:	int totalLocks = 0;
+       42:   24:	int totalStocks = 0;
+       42:   25:	int totalBarrels = 0;
+       42:   26:	double lockprice = 45;
+       42:   27:	double stockprice = 30;
+       42:   28:	double barrelprice = 25;
+        -:   29:	double lockSales, stockSales, barrelSales, sales, commission;
+       42:   30:	bool flag = false;
+       42:   31:	bool flagA = false;
+       42:   32:	bool flagB = false;
+       42:   33:	bool flagC = false;
+       42:   34:	string sub_str, output;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+        -:   35:	
+       84:   36:	stringstream ss(str);
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+branch  5 taken 100% (fallthrough)
+branch  6 taken 0% (throw)
+call    7 never executed
+call    8 never executed
+      255:   37:	while(getline(ss,sub_str,',')&&!flag){
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+branch  6 taken 80% (fallthrough)
+branch  7 taken 20%
+branch  8 taken 100% (fallthrough)
+branch  9 taken 0%
+branch 10 taken 80%
+branch 11 taken 20% (fallthrough)
+      171:   38:		int val = str2int(sub_str);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
+call    9 never executed
+      171:   39:		if(num == 0){
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+       85:   40:			if(val == -1)
+branch  0 taken 49% (fallthrough)
+branch  1 taken 51%
+       42:   41:				flag = true;
+       43:   42:			else if(( val< 1) || (val > 70))
+branch  0 taken 70% (fallthrough)
+branch  1 taken 30%
+branch  2 taken 3% (fallthrough)
+branch  3 taken 97%
+       14:   43:				flagA = true;
+        -:   44:			else
+       29:   45:				totalLocks = totalLocks + val;
+        -:   46:		}
+       86:   47:		else if(num == 1){
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+       43:   48:			if(( val< 1) || (val > 80))
+branch  0 taken 70% (fallthrough)
+branch  1 taken 30%
+branch  2 taken 3% (fallthrough)
+branch  3 taken 97%
+       14:   49:				flagB = true;
+        -:   50:			else
+       29:   51:				totalStocks = totalStocks + val;
+        -:   52:		}
+        -:   53:		else{
+       43:   54:			if((val < 1) || (val > 90))
+branch  0 taken 70% (fallthrough)
+branch  1 taken 30%
+branch  2 taken 3% (fallthrough)
+branch  3 taken 97%
+       14:   55:				flagC = true;
+        -:   56:			else
+       29:   57:				totalBarrels = totalBarrels + val;
+        -:   58:		}
+      171:   59:		num++;
+      171:   60:		if(num==3)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+       43:   61:			num = 0;
+        -:   62:	}
+        -:   63:	
+       42:   64:	if(flagA&&flagB&&flagC)
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
+branch  2 taken 43% (fallthrough)
+branch  3 taken 57%
+branch  4 taken 50% (fallthrough)
+branch  5 taken 50%
+        3:   65:		output = "locks not in 1...70, stocks not in 1...80, barrels not in 1...90";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       39:   66:	else if(flagA&&flagB)
+branch  0 taken 28% (fallthrough)
+branch  1 taken 72%
+branch  2 taken 27% (fallthrough)
+branch  3 taken 73%
+        3:   67:		output = "locks not in 1...70, stocks not in 1...80";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       36:   68:	else if(flagA&&flagC)
+branch  0 taken 22% (fallthrough)
+branch  1 taken 78%
+branch  2 taken 38% (fallthrough)
+branch  3 taken 63%
+        3:   69:		output = "locks not in 1...70, barrels not in 1...90";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       33:   70:	else if(flagB&&flagC)
+branch  0 taken 24% (fallthrough)
+branch  1 taken 76%
+branch  2 taken 38% (fallthrough)
+branch  3 taken 63%
+        3:   71:		output = "stocks not in 1...80, barrels not in 1...90";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       30:   72:	else if(flagA)
+branch  0 taken 17% (fallthrough)
+branch  1 taken 83%
+        5:   73:		output = "locks not in 1...70";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       25:   74:	else if(flagB)
+branch  0 taken 20% (fallthrough)
+branch  1 taken 80%
+        5:   75:		output = "stocks not in 1...80";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       20:   76:	else if(flagC)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        5:   77:		output = "barrels not in 1...90";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   78:	else{
+       15:   79:		lockSales = totalLocks * lockprice;
+       15:   80:		stockSales = totalStocks * stockprice;
+       15:   81:		barrelSales = totalBarrels * barrelprice;
+       15:   82:		sales = lockSales + stockSales + barrelSales;
+        -:   83:		
+       15:   84:		if(sales > 1800){
+branch  0 taken 73% (fallthrough)
+branch  1 taken 27%
+       11:   85:			commission = 0.1 * 1000;           
+       11:   86:			commission = commission + 0.15 * 800;
+       11:   87:			commission = commission + 0.2 * (sales - 1800);
+        -:   88:		}
+        4:   89:		else if(sales > 1000){
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        1:   90:			commission = 0.1 * 1000;             
+        1:   91:			commission = commission + 0.15 * (sales - 1000);
+        -:   92:		}
+        -:   93:		else
+        3:   94:			commission = 0.1 * sales;
+       15:   95:		output = "$" + double2str(commission);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
+call    9 returned 100%
+branch 10 taken 100% (fallthrough)
+branch 11 taken 0% (throw)
+call   12 returned 100%
+branch 13 taken 100% (fallthrough)
+branch 14 taken 0% (throw)
+call   15 never executed
+call   16 never executed
+        -:   96:	}
+       84:   97:	return output;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 never executed
+        -:   98:}
+        -:   99:

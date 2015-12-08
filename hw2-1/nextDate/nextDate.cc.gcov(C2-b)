@@ -1,0 +1,324 @@
+        -:    0:Source:nextDate.cc
+        -:    0:Graph:nextDate.gcno
+        -:    0:Data:nextDate.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "nextDate.h"
+        -:    2:#include <sstream>
+        -:    3:
+        -:    4:using namespace std;
+        -:    5:
+function _Z7int2strRi called 30 returned 100% blocks executed 73%
+       30:    6:string int2str(int &i) {
+       30:    7:  string s;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       60:    8:  stringstream ss(s);
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+branch  5 taken 100% (fallthrough)
+branch  6 taken 0% (throw)
+call    7 never executed
+       30:    9:  ss << i;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   10:
+       60:   11:  return ss.str();
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 never executed
+        -:   12:}
+        -:   13:
+function _Z8nextDateiii called 21 returned 100% blocks executed 86%
+       21:   14:string nextDate(int month, int day, int year){
+       21:   15:	string output = "";
+call    0 returned 100%
+call    1 returned 100%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0% (throw)
+call    4 returned 100%
+       21:   16:	int tomorrowMonth = month;
+       21:   17:	int tomorrowDay = day;
+       21:   18:	int tomorrowYear = year;
+       21:   19:    bool flag = false;
+       21:   20:    bool flagA = false;
+       21:   21:    bool flagB = false;
+       21:   22:    bool flagC = false;
+        -:   23:    
+       21:   24:	if((month < 1) || (month > 12))
+branch  0 taken 81% (fallthrough)
+branch  1 taken 19%
+branch  2 taken 0% (fallthrough)
+branch  3 taken 100%
+        4:   25:        flagA = true;
+       21:   26:	if(( day< 1) || (day > 31))
+branch  0 taken 81% (fallthrough)
+branch  1 taken 19%
+branch  2 taken 0% (fallthrough)
+branch  3 taken 100%
+        4:   27:        flagB = true;
+       21:   28:	if((year < 1812) || (year > 2012))
+branch  0 taken 81% (fallthrough)
+branch  1 taken 19%
+branch  2 taken 0% (fallthrough)
+branch  3 taken 100%
+        4:   29:        flagC = true;
+        -:   30:		
+       21:   31:    if(flagA&&flagB&&flagC)
+branch  0 taken 19% (fallthrough)
+branch  1 taken 81%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+branch  4 taken 50% (fallthrough)
+branch  5 taken 50%
+        1:   32:        output = "month not in 1 ... 12, day not in 1 ... 31, year not in 1812 ... 2012";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       20:   33:    else if(flagA&&flagB)
+branch  0 taken 15% (fallthrough)
+branch  1 taken 85%
+branch  2 taken 33% (fallthrough)
+branch  3 taken 67%
+        1:   34:        output = "month not in 1 ... 12, day not in 1 ... 31";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       19:   35:    else if(flagA&&flagC)
+branch  0 taken 11% (fallthrough)
+branch  1 taken 89%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        1:   36:        output = "month not in 1 ... 12, year not in 1812 ... 2012";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       18:   37:    else if(flagB&&flagC)
+branch  0 taken 11% (fallthrough)
+branch  1 taken 89%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        1:   38:        output = "day not in 1 ... 31, year not in 1812 ... 2012";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       17:   39:    else if(flagA)
+branch  0 taken 6% (fallthrough)
+branch  1 taken 94%
+        1:   40:        output = "month not in 1 ... 12";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       16:   41:    else if(flagB)
+branch  0 taken 6% (fallthrough)
+branch  1 taken 94%
+        1:   42:        output = "day not in 1 ... 31";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+       15:   43:    else if(flagC)
+branch  0 taken 7% (fallthrough)
+branch  1 taken 93%
+        1:   44:        output = "year not in 1812 ... 2012";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   45:	else
+        -:   46:	{
+       14:   47:		if(month==4||month==6||month==9||month==11){
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 79% (fallthrough)
+branch  3 taken 21%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0%
+branch  6 taken 0% (fallthrough)
+branch  7 taken 100%
+        6:   48:			if(day==31)
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
+        1:   49:				flag = true;
+        -:   50:		}
+       11:   51:		else if(month==2){
+branch  0 taken 55% (fallthrough)
+branch  1 taken 45%
+        6:   52:			if(year%4==0&&day>29)
+branch  0 taken 67% (fallthrough)
+branch  1 taken 33%
+branch  2 taken 25% (fallthrough)
+branch  3 taken 75%
+        1:   53:				flag = true;
+        5:   54:			else if(year%4!=0&&day>28)
+branch  0 taken 40% (fallthrough)
+branch  1 taken 60%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        1:   55:				flag = true;
+        -:   56:		}
+        5:   57:		else if(month==12){
+branch  0 taken 60% (fallthrough)
+branch  1 taken 40%
+        3:   58:			if(day==31&&year==2012)
+branch  0 taken 67% (fallthrough)
+branch  1 taken 33%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        1:   59:				flag = true;
+        -:   60:		}
+       14:   61:		if(flag)
+branch  0 taken 29% (fallthrough)
+branch  1 taken 71%
+        4:   62:			output = "Invalid input date";
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   63:		else
+        -:   64:		{
+       10:   65:			if(month==1||month==3||month==5||month==7||month==8||month==10){
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0%
+branch  4 taken 80% (fallthrough)
+branch  5 taken 20%
+branch  6 taken 100% (fallthrough)
+branch  7 taken 0%
+branch  8 taken 100% (fallthrough)
+branch  9 taken 0%
+branch 10 taken 0% (fallthrough)
+branch 11 taken 100%
+        4:   66:				if(day<31)	
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+        1:   67:					tomorrowDay = tomorrowDay + 1;
+        -:   68:				else{
+        1:   69:					tomorrowDay = 1;
+        1:   70:					tomorrowMonth = tomorrowMonth + 1; 
+        -:   71:				}
+        -:   72:			}
+        8:   73:			else if(month==4||month==6||month==9||month==11){
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 75% (fallthrough)
+branch  3 taken 25%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0%
+branch  6 taken 0% (fallthrough)
+branch  7 taken 100%
+        4:   74:				if(day<30)	
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+        1:   75:					tomorrowDay = tomorrowDay + 1;
+        -:   76:				else{
+        1:   77:					tomorrowDay = 1;
+        1:   78:					tomorrowMonth = tomorrowMonth + 1; 
+        -:   79:				}
+        -:   80:			}
+        6:   81:			else if(month==12){
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
+        2:   82:				if(day<31)	
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+        1:   83:					tomorrowDay = tomorrowDay + 1;
+        -:   84:				else{
+        1:   85:					tomorrowDay = 1;
+        1:   86:					tomorrowMonth = 1;
+        1:   87:					tomorrowYear = tomorrowYear + 1; 
+        -:   88:				}
+        -:   89:			}
+        4:   90:			else if(month==2){
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        4:   91:				if(day<28)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        1:   92:					tomorrowDay = tomorrowDay + 1;
+        -:   93:				else{
+        3:   94:					if(year%4!=0){
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
+        1:   95:						tomorrowDay = 1;
+        1:   96:						tomorrowMonth = 3;
+        -:   97:					}
+        -:   98:					else{
+        2:   99:						if(day==29){
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+        1:  100:							tomorrowDay = 1;
+        1:  101:							tomorrowMonth = 3;
+        -:  102:						}
+        -:  103:						else
+        1:  104:							tomorrowDay = tomorrowDay + 1;
+        -:  105:					}				
+        -:  106:				}
+        -:  107:			}
+       10:  108:			output = int2str(tomorrowMonth) + "," + int2str(tomorrowDay) + "," + int2str(tomorrowYear);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
+call    9 returned 100%
+branch 10 taken 100% (fallthrough)
+branch 11 taken 0% (throw)
+call   12 returned 100%
+branch 13 taken 100% (fallthrough)
+branch 14 taken 0% (throw)
+call   15 returned 100%
+branch 16 taken 100% (fallthrough)
+branch 17 taken 0% (throw)
+call   18 returned 100%
+branch 19 taken 100% (fallthrough)
+branch 20 taken 0% (throw)
+call   21 returned 100%
+branch 22 taken 100% (fallthrough)
+branch 23 taken 0% (throw)
+call   24 returned 100%
+branch 25 taken 100% (fallthrough)
+branch 26 taken 0% (throw)
+call   27 returned 100%
+branch 28 taken 100% (fallthrough)
+branch 29 taken 0% (throw)
+call   30 returned 100%
+branch 31 taken 100% (fallthrough)
+branch 32 taken 0% (throw)
+call   33 returned 100%
+branch 34 taken 100% (fallthrough)
+branch 35 taken 0% (throw)
+call   36 returned 100%
+branch 37 taken 100% (fallthrough)
+branch 38 taken 0% (throw)
+call   39 returned 100%
+branch 40 taken 100% (fallthrough)
+branch 41 taken 0% (throw)
+call   42 returned 100%
+branch 43 taken 100% (fallthrough)
+branch 44 taken 0% (throw)
+call   45 never executed
+call   46 never executed
+call   47 never executed
+call   48 never executed
+call   49 never executed
+call   50 never executed
+call   51 never executed
+call   52 never executed
+        -:  109:		}
+        -:  110:	}
+       21:  111:	return output;
+call    0 never executed
+        -:  112:}
+        -:  113:
